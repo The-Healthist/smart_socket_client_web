@@ -2,19 +2,19 @@
   <!-- 主容器 -->
   <div
     :class="` font-${text} theme-color-${currentTheme} theme-rounded-${currrentRounded} theme-fontsize-${currentFontSize} font-${text}`"
-    class="text-muted bg-gradient-to-b from-skin-primary to-skin-primary/10 h-[100vh]"
+    class="text-muted bg-gradient-to-b from-skin-primary to-skin-primary/10 h-[100vh] overflow-x-hidden"
   >
     <!-- 內部容器 -->
     <div
       class="flex flex-col w-full h-full justify-center items-center px-2.5 py-5"
     >
       <!-- 訂單頁面主體 -->
-      <div class="w-[95vw] h-full flex flex-col">
+      <div class="w-[95vw] h-full flex flex-col overflow-x-hidden">
         <!-- 頂部切換按鈕 -->
         <div class="flex flex-row gap-0 relative">
           <!-- 使用中按鈕 -->
           <div
-            class="w-[47.5vw] h-[42px] flex justify-center items-center relative overflow-hidden"
+            class="w-[47.5vw] h-[42px] flex justify-center items-center relative overflow-y-hidden"
             :class="isUse ? 'bg-primary' : 'bg-base'"
           >
             <!-- 使用中狀態 -->
@@ -190,7 +190,6 @@ import { showFailToast, showSuccessToast } from "vant";
 import { validateField } from "@/typings/data";
 import { executePriceFunction } from "@/typings/data";
 import { OrderStatus } from "@/typings/order";
-import moment from "moment";
 import { useOrderStore } from "@/store/order/orderStore";
 import LazyOrderItem from "@/components/orderItem/LazyOrderItem.vue";
 // 初始化數據和計算屬性
@@ -330,11 +329,6 @@ const fetchOrders = async () => {
         showFailToast(`歷史訂單失敗:${err.response.data.message}`);
       });
   }
-};
-
-// 格式化日期
-const formatDate = dateString => {
-  return moment(dateString).format("YYYY/MM/DD HH:mm");
 };
 
 // 組件掛載前執行

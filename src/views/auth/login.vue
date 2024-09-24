@@ -14,7 +14,7 @@
       </div>
 
       <!-- 登錄表單 -->
-      <form class="flex flex-col">
+      <div class="flex flex-col">
         <!-- 手機號輸入字段 -->
         <div class="relative mt-2.5 flex flex-row justify-center items-center">
           <input
@@ -77,7 +77,7 @@
             </template>
           </PrimaryButton>
         </div>
-      </form>
+      </div>
 
       <!-- 註冊頁面鏈接 -->
       <div class="flex justify-center items-center p-2.4 mt-2.5">
@@ -90,10 +90,9 @@
     </div>
   </div>
 </template>
-
 <script setup lang="ts" name="Login">
 // 導入和設置
-import { computed, ref } from "vue";
+import { computed, ref, onMounted } from "vue";
 import PrimaryButton from "@/components/Button/PrimaryButton.vue";
 import InvertedButton from "@/components/Button/InvertedButton.vue";
 import { useThemeStore } from "@/store/theme/themeStore";
@@ -173,4 +172,15 @@ async function handleLoginGuest() {
       showFailToast(`登錄失敗:${err.response.data.message}`);
     });
 }
+
+// 在组件挂载时重定向到正确的 URL
+// onMounted(() => {
+//   if (
+//     window.location.href.includes("#/login") &&
+//     !window.location.href.includes("?")
+//   ) {
+//     const newUrl = window.location.href.replace("#/login", "?#/login");
+//     router.replace(newUrl);
+//   }
+// });
 </script>
