@@ -1,9 +1,9 @@
 <template>
   <div
-    :class="`font-${currentText} theme-color-${currentTheme} theme-rounded-${currrentRounded} theme-fontsize-${currentFontSize} `"
+    :class="`font-${currentText} theme-color-${currentTheme} theme-rounded-${currrentRounded} theme-fontsize-${currentFontSize} relative w-[100vw] px-[6vw] bottom-0 `"
   >
     <div
-      class="bg-base/90 rounded-bar text-mutedC px-5 py-[5px] fixed bottom-2 gap-3 flex justify-center items-center shadow"
+      class="bg-base/90 rounded-bar text-mutedC px-5 py-[5px] gap-3 flex justify-center items-center shadow"
     >
       <router-link
         to="/home"
