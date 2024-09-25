@@ -294,41 +294,39 @@ const handleRenewalOrder = async () => {
 // 獲取訂單數據
 const fetchOrders = async () => {
   let mobile = localStorage.getItem("mobile");
-  if (isUse.value) {
-    getOrders({
-      mobile: mobile,
-      status: OrderStatus.OrderStatusNoneFinished,
-      pageNum: pagination.value.pageNum,
-      pageSize: pagination.value.pageSize
+  getOrders({
+    mobile: mobile,
+    status: OrderStatus.OrderStatusNoneFinished,
+    pageNum: pagination.value.pageNum,
+    pageSize: pagination.value.pageSize
+  })
+    .then(res => {
+      const after: any = res;
+      orders.value = [...orders.value, ...after.data];
+      orderStore.addOrder(after.data);
+      totalPage.value = after.pagination.total;
     })
-      .then(res => {
-        const after: any = res;
-        orders.value = [...orders.value, ...after.data];
-        orderStore.addOrder(after.data);
-        totalPage.value = after.pagination.total;
-      })
-      .catch(err => {
-        console.log(err);
-        showFailToast(`歷史訂單失敗:${err.response.data.message}`);
-      });
-  } else {
-    getOrders({
-      mobile: mobile,
-      status: OrderStatus.OrderStatusFinished,
-      pageNum: paginationH.value.pageNum,
-      pageSize: paginationH.value.pageSize
+    .catch(err => {
+      console.log(err);
+      showFailToast(`歷史訂單失敗:${err.response.data.message}`);
+    });
+
+  getOrders({
+    mobile: mobile,
+    status: OrderStatus.OrderStatusFinished,
+    pageNum: paginationH.value.pageNum,
+    pageSize: paginationH.value.pageSize
+  })
+    .then(res => {
+      const after: any = res;
+      ordersH.value = [...ordersH.value, ...after.data];
+      orderStore.addOrderH(after.data);
+      totalPageH.value = after.pagination.total;
     })
-      .then(res => {
-        const after: any = res;
-        ordersH.value = [...ordersH.value, ...after.data];
-        orderStore.addOrderH(after.data);
-        totalPageH.value = after.pagination.total;
-      })
-      .catch(err => {
-        console.log(err);
-        showFailToast(`歷史訂單失敗:${err.response.data.message}`);
-      });
-  }
+    .catch(err => {
+      console.log(err);
+      showFailToast(`歷史訂單失敗:${err.response.data.message}`);
+    });
 };
 
 // 組件掛載前執行

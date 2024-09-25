@@ -10,10 +10,10 @@
         <!-- 訂單詳情 -->
 
         <div
-          class="bg-base w-[95vw] h-[auto] flex flex-col overflow-y-scroll rounded-card mt-[10vh]"
+          class="bg-base w-[95vw] h-[auto] flex flex-col overflow-y-scroll rounded-card mt-[1vh]"
         >
           <div
-            class="text-primary text-largest flex justify-center items-center"
+            class="text-baseC/40 text-largest flex justify-center items-center"
           >
             <!-- <i-icon icon="streamline:return-2" class="text-[20px] text-inverted" /> -->
             訂單詳情
@@ -25,14 +25,12 @@
           >
             <div class="flex flex-col gap-2.5">
               <!-- Existing order details -->
-              <div class="flex justify-between items-center">
-                <span class="text-base text-baseC font-bold truncate"
-                  >插座名稱 :</span
-                >
+              <div class="flex justify-between items-center row-height">
+                <span class="text-base text-baseC/40 truncate">插座名稱 :</span>
                 <div class="text-large font-bold">{{ order.device.name }}</div>
               </div>
-              <div class="flex justify-between items-center">
-                <span class="text-base text-baseC font-bold truncate"
+              <div class="flex justify-between items-center row-height">
+                <span class="text-base text-baseC/40 font-bold truncate"
                   >插座地址 :</span
                 >
                 <div class="text-large font-bold">
@@ -40,81 +38,80 @@
                 </div>
               </div>
 
-              <div class="flex justify-between items-center">
-                <span class="text-base text-baseC font-bold truncate"
-                  >購買時間 :</span
-                >
+              <div class="flex justify-between items-center row-height">
+                <span class="text-base text-baseC/40 truncate">購買時間 :</span>
                 <div class="text-large font-bold">{{ order.quantity }}小時</div>
               </div>
-              <div class="flex justify-between items-center">
-                <span class="text-base text-baseC font-bold truncate"
-                  >支付金額 :</span
-                >
-                <div class="text-large font-bold">{{ order.price }}HKD</div>
+              <div class="flex justify-between items-center row-height">
+                <span class="text-base text-baseC/40 truncate">支付金額 :</span>
+                <div class="text-large font-bold text-danger">
+                  {{ order.price }}HKD
+                </div>
               </div>
-              <div class="flex justify-between items-center">
-                <span class="text-base text-baseC font-bold truncate"
-                  >支付方式 :</span
-                >
+              <div class="flex justify-between items-center row-height">
+                <span class="text-base text-baseC/40 truncate">支付方式 :</span>
                 <div class="text-large font-bold">
-                  {{ order.paymentMethod }}
+                  <!-- {{ order.paymentMethod }} -->
+                  銀行卡
                 </div>
               </div>
 
-              <div class="flex justify-between items-center">
-                <span class="text-base text-baseC font-normal truncate"
+              <div class="flex justify-between items-center row-height">
+                <span class="text-base text-baseC/40 font-normal truncate"
                   >訂單創建時間 :</span
                 >
-                <div class="text-base">
+                <div class="text-large font-bold">
                   {{ moment(order.createdAt).format("yyyy/MM/DD HH:ss") }}
                 </div>
               </div>
 
-              <div class="flex justify-between items-center">
-                <span class="text-base text-baseC font-normal truncate"
+              <div class="flex justify-between items-center row-height">
+                <span class="text-base text-baseC/40 font-normal truncate"
                   >服務開始時間 :</span
                 >
-                <div class="text-base">
+                <div class="text-large font-bold">
                   {{ moment(order.startAt).format("yyyy/MM/DD HH:ss") }}
                 </div>
               </div>
-              <div class="flex justify-between items-center">
-                <span class="text-base text-baseC font-normal truncate"
+              <div class="flex justify-between items-center row-height">
+                <span class="text-base text-baseC/40 font-normal truncate"
                   >服務結束時間 :</span
                 >
-                <div class="text-base">
+                <div class="text-large font-bold">
                   {{ moment(order.endAt).format("yyyy/MM/DD HH:ss") }}
                 </div>
               </div>
-              <div class="flex justify-between items-center">
-                <span class="text-base text-baseC font-normal truncate"
+              <div class="flex justify-between items-center row-height">
+                <span class="text-base text-baseC/40 font-normal truncate"
                   >訂單編號 :</span
                 >
-                <div class="text-small font-bold flex items-end justify-end">
+                <div
+                  class="text-small font-bold text-baseC/40 flex items-end justify-end"
+                >
                   {{ order.uuid }}
                 </div>
               </div>
-              <div class="flex justify-between items-end">
-                <span class="text-base text-baseC font-normal truncate"
+              <div class="flex justify-between items-end row-height">
+                <span class="text-base text-baseC/40 font-normal truncate"
                   >設備編號 :</span
                 >
-                <div class="text-small font-bold flex items-end justify-end">
+                <div
+                  class="text-small font-bold text-baseC/40 flex items-end justify-end"
+                >
                   {{ order.device.uuid }}
                 </div>
               </div>
 
-              <div class="flex justify-between items-center">
-                <span class="text-base text-baseC font-normal truncate"
-                  >訂單狀態 :</span
-                >
+              <div class="flex justify-between items-center row-height">
+                <span class="text-base text-baseC/40 font-normal truncate" />
                 <div
                   :class="[
                     'text-large font-bold',
-                    status == '已完成'
+                    status == '已結束'
                       ? 'text-baseC/40'
                       : status == '待支付'
                         ? 'text-primary/60'
-                        : 'text-text-[#00a5ff]'
+                        : 'text-commonBlue'
                   ]"
                 >
                   {{ status }}
@@ -122,11 +119,23 @@
               </div>
               <div
                 v-if="status == '待支付'"
-                class="flex justify-between items-center"
+                class="flex justify-between gap-2.5 items-center"
               >
+                <InvertedButton @click="endOrder(order.uuid)">
+                  <template #default>
+                    <div
+                      class="w-[22vw] h-[22px] flex flex-row justify-center items-center overflow-hidden text-ellipsis"
+                    >
+                      <span
+                        class="text-base text-primary font-bold font-CactusClassicalSerifHK text-center"
+                        >取消訂單</span
+                      >
+                    </div>
+                  </template>
+                </InvertedButton>
                 <PrimaryButton
                   class="grow w-full"
-                  @click="RenewalOrder(order.uuid)"
+                  @click="PayOrderPending(order.uuid)"
                 >
                   <template #default>
                     <div
@@ -135,14 +144,14 @@
                       <i-icon icon="mingcute:flash-line" class="text-[20px]" />
                       <span
                         class="text-larger text-inverted font-bold tracking-wide"
-                        >支付訂單</span
+                        >訂單支付</span
                       >
                     </div>
                   </template>
                 </PrimaryButton>
               </div>
               <div
-                v-if="status === '正在使用中'"
+                v-if="status === '使用中'"
                 class="flex justify-between items-center w-full"
               >
                 <div class="w-full">
@@ -208,7 +217,7 @@
       >
         <h1 class="text-largest test-basec">充值續費</h1>
         <span
-          class="flex flex-row justify-start text-baseC text-base w-full ml-2.5"
+          class="flex flex-row justify-start text-baseC/40 text-base w-full ml-2.5"
           >充值時間</span
         >
         <div class="flex flex-row items-center w-full -ml-2.5">
@@ -229,7 +238,9 @@
           </div>
         </div>
         <div class="flex flex-row w-full ml-2 justify-between">
-          <span class="flex flex-row justify-start text-baseC text-base w-full">
+          <span
+            class="flex flex-row justify-start text-baseC/40 text-base w-full"
+          >
             總計金額</span
           >
           <span v-if="function_price" class="text-primary text-large mr-[26px]"
@@ -268,11 +279,18 @@ import { useFontSizeStore } from "@/store/theme/fontsizeStore";
 import { useTextStore } from "@/store/theme/textStore";
 import { useRouter } from "vue-router";
 import { getOrder, payOrder } from "@/api/order";
-import { showFailToast, showSuccessToast } from "vant";
+
 import moment from "moment"; // Import moment
 import { OrderStatus } from "@/typings/order";
 import { endOrder, renewOrder } from "@/api/order";
 import { executePriceFunction, validateField } from "@/typings/data";
+import { getOrderOnPayMent } from "@/api/order";
+import {
+  closeToast,
+  showFailToast,
+  showLoadingToast,
+  showSuccessToast
+} from "vant";
 
 const themeStore = useThemeStore();
 const currentTheme = computed(() => themeStore.getTheme);
@@ -301,11 +319,11 @@ onBeforeMount(async () => {
           status.value = "待支付";
         } else if (data.status === OrderStatus.Ongoing) {
           // Logic to show buttons for ending the order and renewing, similar to orderPage
-          status.value = "正在使用中";
+          status.value = "使用中";
         } else if (data.status === OrderStatus.Ended) {
-          status.value = "已完成";
+          status.value = "已結束";
         } else if (data.status === OrderStatus.Closed) {
-          status.value = "已關閉";
+          status.value = "訂單關閉";
         }
         // console.log(ordersH.value);
       })
@@ -379,5 +397,58 @@ const handleRenewalOrder = async () => {
       isShowDialog.value = false;
     }
   );
+};
+
+const PayOrderPending = (uuid: string) => {
+  payOrder({
+    uuid
+  }).then((res: any) => {
+    console.log(res);
+    getOrderOnPayMent({
+      uuid: res.data.orderUuid
+    }).then((res2: any) => {
+      console.log("res2", res2.data);
+      if (res2.data.status === "failed") {
+        showFailToast(`支付失敗:${res2.data.message}`);
+      } else if (res2.data.status === "success") {
+        showSuccessToast("支付成功");
+        router.push({ name: "Order" });
+      } else {
+        let second = 3;
+        const timer = setInterval(() => {
+          second--;
+          if (second) {
+            toast.message = `正在支付中(${second})`;
+          } else {
+            clearInterval(timer);
+            closeToast();
+          }
+        }, 1000);
+        const toast = showLoadingToast({
+          duration: 0,
+          forbidClick: true,
+          message: "正在支付中(3)"
+        });
+        setTimeout(() => {
+          getOrderOnPayMent({
+            uuid: res.data.orderUuid
+          }).then((res3: any) => {
+            console.log("res3", res3.data);
+            if (res3.data.status === "failed") {
+              showFailToast(`支付失敗:${res3.data.message}`);
+              router.push({
+                name: "OrderDetail",
+                query: { uuid: res3.data.orderUuid }
+              });
+            } else if (res3.data.status === "success") {
+              router.push({ name: "Order" });
+            } else {
+              showFailToast(`出錯了:${res3.data.message}`);
+            }
+          });
+        }, 3000);
+      }
+    });
+  });
 };
 </script>

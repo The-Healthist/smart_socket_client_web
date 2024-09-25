@@ -17,7 +17,8 @@ export default {
         inverted: "rgb(var(--color-text-inverted) / <alpha-value>)", // 插入文本颜色，带有透明度
         primary: "rgb(var(--color-text-primary) / <alpha-value>)", // 主要文本颜色，带有透明度
         secondary: "rgb(var(--color-text-secondary) / <alpha-value>)", // 次要文本颜色，带有透明度
-        danger: "rgb(var( --color-error) / <alpha-value>)"
+        danger: "rgb(var( --color-error) / <alpha-value>)",
+        commonBlue: "rgb(var( --color-common-blue) / <alpha-value>)"
       },
       borderColor: {
         primary: "rgb(var(--color-border-primary) / <alpha-value>)", // 边框颜色，带有透明度

@@ -87,6 +87,7 @@
 
   /* 状态色 */
   --color-error: 255 99 71; /* 番茄红 */
+  --color-common-blue: 0 165 255; /* 蓝色 */
   --color-success: 50 205 50; /* 石灰绿 */
   --color-separator: 0 0 0; /* 深灰蓝色 */
 }
@@ -128,6 +129,7 @@
   --color-error: 255 69 58; /* 番茄红 */
   --color-success: 50 205 50; /* 石灰绿 */
   --color-separator: 0 100 0; /* 森林绿 */
+  --color-common-blue: 0 165 255; /* 蓝色 */
 }
 
 .theme-color-red {
@@ -168,6 +170,7 @@
   --color-error: 255 0 0; /* 红色 */
   --color-success: 50 205 50; /* 石灰绿 */
   --color-separator: 139 0 0; /* 深红 */
+  --color-common-blue: 0 165 255; /* 蓝色 */
 }
 
 .theme-color-white {
@@ -208,4 +211,5 @@
   --color-error: 255 69 58; /* 番茄红 */
   --color-success: 50 205 50; /* 石灰绿 */
   --color-separator: 169 169 169; /* 暗灰色 */
+  --color-common-blue: 0 165 255; /* 蓝色 */
 }
