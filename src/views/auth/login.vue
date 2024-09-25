@@ -6,17 +6,20 @@
   >
     <!-- 登錄表單的卡片容器 -->
     <div
-      class="rounded-card bg-base flex flex-col p-3 w-[95vw] h-[auto] mt-[20vh] absolute"
+      class="rounded-card bg-base flex flex-col p-2 w-[95vw] h-[auto] mt-[20vh] absolute"
     >
       <!-- 登錄標題 -->
       <div class="text-largest font-bold tracking-wide flex justify-center">
-        登 入
+        會員登入
       </div>
 
       <!-- 登錄表單 -->
-      <div class="flex flex-col">
+      <div class="flex flex-col w-full">
         <!-- 手機號輸入字段 -->
-        <div class="relative mt-2.5 flex flex-row justify-center items-center">
+        <div
+          class="relative mt-2.5 flex flex-row w-full space-x-2.5 justify-between items-center"
+        >
+          <div class="text-base whitespace-nowrap w-[15%]">電話</div>
           <input
             v-model="formData.mobile"
             type="number"
@@ -25,7 +28,7 @@
           />
         </div>
         <!-- 手機號驗證錯誤信息 -->
-        <div class="flex h-2.5 ml-2.5">
+        <div class="flex h-2.5 ml-[15%]">
           <span
             v-if="!isValidPhone && isShowPhoneSpan"
             class="text-red-500 text-sm"
@@ -33,7 +36,10 @@
           >
         </div>
         <!-- 密碼輸入字段 -->
-        <div class="relative mt-2.5 flex flex-row justify-center items-center">
+        <div
+          class="relative mt-2.5 flex flex-row justify-between space-x-2.5 items-center"
+        >
+          <div class="text-base whitespace-nowrap w-[15%]">密碼</div>
           <input
             v-model="formData.password"
             type="password"
@@ -42,7 +48,7 @@
           />
         </div>
         <!-- 密碼驗證錯誤信息 -->
-        <div class="flex h-2.5 ml-2.5">
+        <div class="flex h-2.5 ml-[15%]">
           <span
             v-if="!isValidPassword && isShowPasswordSpan"
             class="text-red-500 text-sm"
@@ -50,16 +56,16 @@
           >
         </div>
         <!-- 遊客登錄和常規登錄按鈕 -->
-        <div class="flex justify-center items-center ml-2.5 gap-2.5 p-2.4 mt-3">
-          <InvertedButton @click="handleLoginGuest()">
+        <div class="flex justify-between items-center gap-2.5 mt-3">
+          <InvertedButton @click="router.push('/register')">
             <template #default>
               <div
-                class="w-[auto] h-[22px] flex flex-row justify-center items-center"
+                class="w-[auto] h-[20px] mx-2.5 px-2.5 flex flex-row justify-center items-center"
               >
                 <span
                   class="text-large text-primary font-bold font-CactusClassicalSerifHK text-center"
                 >
-                  使用遊客登錄
+                  注册
                 </span>
               </div>
             </template>
@@ -71,7 +77,7 @@
               >
                 <i-icon icon="mingcute:flash-line" class="text-[20px]" />
                 <span class="text-larger text-inverted font-bold tracking-wide"
-                  >即刻登錄</span
+                  >即刻登入</span
                 >
               </div>
             </template>
@@ -83,8 +89,8 @@
       <div class="flex justify-center items-center p-2.4 mt-2.5">
         <span
           class="text-primary/80 text-base hover:text-primary cursor-pointer"
-          @click="router.push('/register')"
-          >沒有賬號?點擊註冊</span
+          @click="handleLoginGuest()"
+          >游客登入</span
         >
       </div>
     </div>

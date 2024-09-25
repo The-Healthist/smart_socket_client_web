@@ -1,7 +1,7 @@
 <!-- 背景色是primary 的按钮 -->
 <template>
   <button
-    class="bg-primary text-inverted rounded-button hover:opacity-70 p-2.5 font-bold"
+    class="bg-primary text-inverted rounded-button active:opacity-70 p-2.5 font-bold"
   >
     <slot />
   </button>
