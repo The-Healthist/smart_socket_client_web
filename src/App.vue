@@ -1,5 +1,9 @@
+<!-- src/App.vue -->
 <template>
-  <router-view />
+  <div id="app">
+    <router-view />
+    <GlobalDialog />
+  </div>
 </template>
 
-<style></style>
+<script setup></script>

@@ -8,6 +8,7 @@ import "./styles/index.less";
 import "./styles/tailwind.css";
 // svg icon
 import "virtual:svg-icons-register";
+import GlobalDialog from "./components/Dialog/GlobalDialog.vue";
 
 import App from "./App.vue";
 import router from "./router";
@@ -19,4 +20,6 @@ app.use(router);
 app.use(Lazyload, {
   lazyComponent: true
 });
+app.component("GlobalDialog", GlobalDialog);
+app.config.globalProperties.$bus = app;
 app.mount("#app");

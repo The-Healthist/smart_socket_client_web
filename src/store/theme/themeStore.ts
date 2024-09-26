@@ -17,5 +17,9 @@ export const useThemeStore = defineStore({
     setTheme(theme: ThemeColor) {
       this.activeTheme = theme;
     }
+  },
+  persist: {
+    key: "colorTheme",
+    storage: localStorage
   }
 });

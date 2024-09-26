@@ -17,5 +17,9 @@ export const useFontSizeStore = defineStore({
       console.log(theme);
       this.fontSize = theme;
     }
+  },
+  persist: {
+    key: "themeFontSize",
+    storage: localStorage
   }
 });

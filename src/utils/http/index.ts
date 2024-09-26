@@ -1,147 +1,142 @@
 import Axios, {
-  type AxiosInstance, // Axios 实例的类型定义
-  type AxiosError, // Axios 错误的类型定义
-  type AxiosResponse, // Axios 响应的类型定义
-  type AxiosRequestConfig // Axios 请求配置的类型定义
+  type AxiosInstance,
+  type AxiosError,
+  type AxiosResponse,
+  type AxiosRequestConfig
 } from "axios";
-import { ContentTypeEnum } from "@/enums/requestEnum"; // 导入内容类型枚举
-import NProgress from "../progress"; // 导入进度条组件
-import { showFailToast } from "vant"; // 导入 Vant 的错误提示组件
-import "vant/es/toast/style"; // 导入 Vant 提示组件的样式
-
+import { ContentTypeEnum } from "@/enums/requestEnum";
+import NProgress from "../progress";
+import { showFailToast } from "vant";
+import "vant/es/toast/style";
 import { guestUserLogin } from "@/api/auth";
+import { useDialogStore } from "@/store/dialog/dlalogStore";
 
-// 默认的 Axios 实例请求配置
-const configDefault = {
+// 默認的 Axios 配置
+const configDefault: AxiosRequestConfig = {
   headers: {
-    "Content-Type": ContentTypeEnum.JSON // 设置默认的请求头 Content-Type 为 JSON
+    "Content-Type": ContentTypeEnum.JSON
   },
-  timeout: 5000, // 请求超时时间，单位为毫秒
-  baseURL: "/", // 基础 URL，所有请求都会基于此 URL
-  data: {} // 默认的请求数据，通常为空对象
+  timeout: 5000,
+  baseURL: "/",
+  data: {}
 };
 
+// Http 類
 class Http {
-  // 静态属性，用于存储 Axios 实例
   private static axiosInstance: AxiosInstance;
-  // 静态属性，用于存储默认请求配置
   private static axiosConfigDefault: AxiosRequestConfig;
 
-  // 请求拦截器方
   private httpInterceptorsRequest(): void {
     Http.axiosInstance.interceptors.request.use(
       async config => {
-        NProgress.start(); // 开始显示进度条
-        // 检查 URL 是否为 login 或 guestUserLogin
+        NProgress.start();
         if (
-          !config.url.includes("login") &&
-          !config.url.includes("guestUserLogin")
+          !config.url?.includes("login") &&
+          !config.url?.includes("guestUserLogin")
         ) {
           const token = localStorage.getItem("common_token");
           if (token) {
             config.headers["Authorization"] = `Bearer ${token}`;
           } else {
-            let res: any = await guestUserLogin();
-            localStorage.setItem("common_token", res.token);
-            localStorage.setItem("isGuest", "true");
-            config.headers["Authorization"] = `Bearer ${res.token}`;
+            try {
+              const res: any = await guestUserLogin();
+              localStorage.setItem("common_token", res.token);
+              localStorage.setItem("isGuest", "true");
+              config.headers["Authorization"] = `Bearer ${res.token}`;
+            } catch (error) {
+              showFailToast("遊客登入失敗");
+              return Promise.reject(error);
+            }
           }
         }
         return config;
       },
       (error: AxiosError) => {
-        showFailToast(error.message); // 显示错误提示
-        return Promise.reject(error); // 返回一个被拒绝的 Promise
+        showFailToast(error.message);
+        return Promise.reject(error);
       }
     );
   }
 
-  // 响应拦截器方法
   private httpInterceptorsResponse(): void {
     Http.axiosInstance.interceptors.response.use(
       (response: AxiosResponse) => {
-        NProgress.done(); // 结束进度条显示
-        // 这里可以根据后端的响应结构进行自定义处理
-        // 目前直接返回响应的 data 部分
+        NProgress.done();
         return response.data;
       },
       (error: AxiosError) => {
-        NProgress.done(); // 结束进度条显示
-        // 处理 HTTP 网络错误
+        NProgress.done();
         let message = "";
-        // 根据 HTTP 状态码设置错误信息
+        const dialogStore = useDialogStore();
         const status = error.response?.status;
         switch (status) {
           case 400:
-            message = "请求错误";
+            message = "請求錯誤";
             break;
           case 401:
-            {
-              message = "未授权，请登录";
-            }
+            message = "未授權，請登入";
 
+            dialogStore.showLogin();
             break;
           case 403:
-            message = "拒绝访问";
+            message = "拒絕訪問";
             break;
           case 404:
-            message = `请求地址出错: ${error.response?.config?.url}`;
+            message = `請求地址出錯: ${error.response?.config?.url}`;
             break;
           case 408:
-            message = "请求超时";
+            message = "請求超時";
             break;
           case 500:
-            message = "服务器内部错误";
+            message = "服務器內部錯誤";
+
             break;
           case 501:
-            message = "服务未实现";
+            message = "服務未實現";
             break;
           case 502:
-            message = "网关错误";
+            // dialogStore.showLogin();
+            message = "網關錯誤";
             break;
           case 503:
-            message = "服务不可用";
+            message = "服務不可用";
             break;
           case 504:
-            message = "网关超时";
+            message = "網關超時";
             break;
           case 505:
-            message = "HTTP版本不受支持";
+            message = "HTTP 版本不受支持";
             break;
           default:
-            message = "网络连接故障";
+            message = "網絡連接故障";
         }
-
-        showFailToast(message); // 显示错误提示
-        return Promise.reject(error); // 返回一个被拒绝的 Promise
+        showFailToast(message);
+        return Promise.reject(error);
       }
     );
   }
 
-  // 构造函数
   constructor(config: AxiosRequestConfig) {
-    Http.axiosConfigDefault = config; // 设置默认请求配置
-    Http.axiosInstance = Axios.create(config); // 创建 Axios 实例
-    this.httpInterceptorsRequest(); // 配置请求拦截器
-    this.httpInterceptorsResponse(); // 配置响应拦截器
+    Http.axiosConfigDefault = config;
+    Http.axiosInstance = Axios.create(config);
+    this.httpInterceptorsRequest();
+    this.httpInterceptorsResponse();
   }
 
-  // 通用请求方法
   public request<T>(paramConfig: AxiosRequestConfig): Promise<T> {
-    // 合并默认配置和传入的配置
     const config = { ...Http.axiosConfigDefault, ...paramConfig };
     return new Promise((resolve, reject) => {
       Http.axiosInstance
         .request(config)
         .then((response: any) => {
-          resolve(response); // 请求成功，返回结果
+          resolve(response);
         })
         .catch(error => {
-          reject(error); // 请求失败，返回错误
+          reject(error);
         });
     });
   }
 }
 
-// 创建 Http 实例并导出，使用默认配置
+// 匯出 Http 實例
 export const http = new Http(configDefault);

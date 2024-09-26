@@ -16,5 +16,9 @@ export const useRoundedStore = defineStore({
     setRounded(theme: ThemeRounded) {
       this.rounded = theme;
     }
+  },
+  persist: {
+    key: "themeRounded",
+    storage: localStorage
   }
 });

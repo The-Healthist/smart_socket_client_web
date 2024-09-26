@@ -29,5 +29,9 @@ export const useTextStore = defineStore({
     setText(text: ThemeText) {
       this.activeText = text;
     }
+  },
+  persist: {
+    key: "themeText",
+    storage: localStorage
   }
 });
