@@ -21,24 +21,24 @@ export interface toRouteType extends RouteLocationNormalized {
   };
 }
 
-// router.beforeEach((to: toRouteType, from, next) => {
-//   NProgress.start();
-//   useCachedViewStoreHook().addCachedView(to);
-//   setPageTitle(to.meta.title);
-//   next();
-// });
-router.beforeResolve((to: toRouteType, from, next) => {
-  const token = localStorage.getItem("common_token");
-  const hasLogin = token != null && token != "";
+router.beforeEach((to: toRouteType, from, next) => {
   NProgress.start();
   useCachedViewStoreHook().addCachedView(to);
   setPageTitle(to.meta.title);
-  if (to.name !== "Login" && !hasLogin) {
-    next({ name: "Login" });
-  } else {
-    next();
-  }
+  next();
 });
+// router.beforeResolve((to: toRouteType, from, next) => {
+//   const token = localStorage.getItem("common_token");
+//   const hasLogin = token != null && token != "";
+//   NProgress.start();
+//   useCachedViewStoreHook().addCachedView(to);
+//   setPageTitle(to.meta.title);
+//   if (to.name !== "Login" && !hasLogin) {
+//     next({ name: "Login" });
+//   } else {
+//     next();
+//   }
+// });
 router.afterEach(() => {
   NProgress.done();
 });

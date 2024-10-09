@@ -7,7 +7,9 @@
     <!-- Registration Card -->
     <div class="rounded-card bg-base flex flex-col p-2 w-full max-w-md">
       <!-- Title -->
-      <div class="text-largest font-bold tracking-wide flex justify-center">
+      <div
+        class="text-common text-largest font-bold tracking-wide flex justify-center"
+      >
         註冊會員
       </div>
 

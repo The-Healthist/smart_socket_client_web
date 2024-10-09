@@ -308,7 +308,7 @@ const fetchOrders = async () => {
     })
     .catch(err => {
       console.log(err);
-      showFailToast(`歷史訂單失敗:${err.response.data.message}`);
+      showFailToast(`獲取訂單失敗:${err.response.data.message}`);
     });
 
   getOrders({
@@ -325,7 +325,7 @@ const fetchOrders = async () => {
     })
     .catch(err => {
       console.log(err);
-      showFailToast(`歷史訂單失敗:${err.response.data.message}`);
+      showFailToast(`獲取歷史訂單失敗:${err.response.data.message}`);
     });
 };
 

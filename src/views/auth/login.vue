@@ -9,7 +9,9 @@
       class="rounded-card bg-base flex flex-col p-2 w-[95vw] h-[auto] mt-[20vh] absolute"
     >
       <!-- 登錄標題 -->
-      <div class="text-largest font-bold tracking-wide flex justify-center">
+      <div
+        class="test-base text-common text-largest font-bold tracking-wide flex justify-center"
+      >
         會員登入
       </div>
 
@@ -19,12 +21,14 @@
         <div
           class="relative mt-2.5 flex flex-row w-full space-x-2.5 justify-between items-center"
         >
-          <div class="text-base whitespace-nowrap w-[15%]">電話</div>
+          <div class="text-base text-common whitespace-nowrap w-[15%]">
+            電話
+          </div>
           <input
             v-model="formData.mobile"
             type="number"
             placeholder="手機號碼"
-            class="py-1 px-3 border rounded w-full text-lg tracking-wider"
+            class="text-common py-1 px-3 border rounded w-full text-lg tracking-wider"
           />
         </div>
         <!-- 手機號驗證錯誤信息 -->
@@ -39,12 +43,14 @@
         <div
           class="relative mt-2.5 flex flex-row justify-between space-x-2.5 items-center"
         >
-          <div class="text-base whitespace-nowrap w-[15%]">密碼</div>
+          <div class="text-base text-common whitespace-nowrap w-[15%]">
+            密碼
+          </div>
           <input
             v-model="formData.password"
             type="password"
             placeholder="密碼"
-            class="py-1 px-3 border rounded w-full text-lg"
+            class="text-common py-1 px-3 border rounded w-full text-lg"
           />
         </div>
         <!-- 密碼驗證錯誤信息 -->
