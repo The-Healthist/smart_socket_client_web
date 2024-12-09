@@ -62,7 +62,7 @@
               class="text-inverted hover:text-primary w-[6vw] h-full flex justify-center items-center"
               @click="navigateToSetting"
             >
-              <i-icon icon="uil:setting" class="text-[22px]" />
+              <IIcon icon="uil:setting" class="text-[22px]" />
             </button>
           </div>
 
@@ -73,19 +73,19 @@
           class="rounded-card bg-base text-mutedC flex flex-row justify-between space-x-2.5 w-full h-[77px] px-5 py-2.5"
         >
           <div class="flex flex-col space-y-[4px] justify-center items-center">
-            <i-icon icon="bx:wallet" class="text-[36px]" />
+            <IIcon icon="bx:wallet" class="text-[36px]" />
             <div>我的錢包</div>
           </div>
           <div class="flex flex-col space-y-[4px] justify-center items-center">
-            <i-icon icon="cil:list" class="text-[36px]" />
+            <IIcon icon="cil:list" class="text-[36px]" />
             <div>我的訂單</div>
           </div>
           <div class="flex flex-col space-y-[4px] justify-center items-center">
-            <i-icon icon="icon-park-outline:woman" class="text-[36px]" />
+            <IIcon icon="icon-park-outline:woman" class="text-[36px]" />
             <div>客服中心</div>
           </div>
           <div class="flex flex-col space-y-[4px] justify-center items-center">
-            <i-icon icon="hugeicons:safari" class="text-[36px]" />
+            <IIcon icon="hugeicons:safari" class="text-[36px]" />
             <div>使用指南</div>
           </div>
         </div>

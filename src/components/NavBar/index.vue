@@ -7,11 +7,11 @@ const onClickRight = (event: TouchEvent | MouseEvent) => {
 </script>
 <!-- 主题切换 -->
 <template>
-  <van-nav-bar fixed placeholder @click-right="onClickRight">
+  <VanNavBar fixed placeholder @click-right="onClickRight">
     <template #right>
-      <svg-icon class="text-[18px]" :name="useDarkMode() ? 'light' : 'dark'" />
+      <SvgIcon class="text-[18px]" :name="useDarkMode() ? 'light' : 'dark'" />
     </template>
-  </van-nav-bar>
+  </VanNavBar>
 </template>
 
 <style scoped></style>

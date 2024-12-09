@@ -28,7 +28,7 @@
               @click="isUse = true"
             >
               <span class="text-large">使用中</span>
-              <i-icon icon="mingcute:flash-line" class="text-[20px]" />
+              <IIcon icon="mingcute:flash-line" class="text-[20px]" />
             </button>
           </div>
           <!-- 歷史訂單按鈕 -->
@@ -46,7 +46,7 @@
               "
               @click="isUse = false"
             >
-              <i-icon icon="tabler:clock" class="text-[20px]" />
+              <IIcon icon="tabler:clock" class="text-[20px]" />
               <span class="text-base">歷史訂單</span>
             </button>
           </div>
@@ -68,37 +68,37 @@
           </div>
           <!-- 當前使用中的訂單 -->
           <div v-if="isUse">
-            <lazy-component error-text="加載失敗" loading-text="加載中">
+            <LazyComponent error-text="加載失敗" loading-text="加載中">
               <div v-for="order in orders" :key="order.uuid">
                 <LazyOrderItem
                   :key="order.uuid"
                   :order="order"
                   @click="navigateToOrderDetail"
-                  @endOrder="endOrderU"
-                  @renewOrder="RenewalOrder"
+                  @end-order="endOrderU"
+                  @renew-order="RenewalOrder"
                 />
               </div>
-            </lazy-component>
+            </LazyComponent>
           </div>
           <!-- 歷史訂單列表 -->
           <div v-else>
-            <lazy-component error-text="加載失敗" loading-text="加載中">
+            <LazyComponent error-text="加載失敗" loading-text="加載中">
               <div v-for="order in ordersH" :key="order.uuid">
                 <LazyOrderItem
                   :key="order.uuid"
                   :order="order"
                   @click="navigateToOrderDetail"
-                  @endOrder="endOrderU"
-                  @renewOrder="RenewalOrder"
+                  @end-order="endOrderU"
+                  @renew-order="RenewalOrder"
                 />
               </div>
-            </lazy-component>
+            </LazyComponent>
           </div>
         </div>
       </div>
     </div>
     <!-- 充值對話框 -->
-    <van-dialog
+    <VanDialog
       v-model:show="isShowDialog"
       :show-cancel-button="false"
       :showConfirmButton="false"
@@ -150,7 +150,7 @@
             <div
               class="h-[24px] flex flex-row justify-center items-center gap-2"
             >
-              <i-icon icon="mingcute:flash-line" class="text-[20px]" />
+              <IIcon icon="mingcute:flash-line" class="text-[20px]" />
               <span class="text-larger text-inverted font-bold tracking-wide"
                 >即刻支付</span
               >
@@ -158,7 +158,7 @@
           </template>
         </PrimaryButton>
       </div>
-    </van-dialog>
+    </VanDialog>
   </div>
 </template>
 
@@ -191,7 +191,7 @@ import { validateField } from "@/typings/data";
 import { executePriceFunction } from "@/typings/data";
 import { OrderStatus } from "@/typings/order";
 import { useOrderStore } from "@/store/order/orderStore";
-import LazyOrderItem from "@/components/orderItem/LazyOrderItem.vue";
+import LazyOrderItem from "@/components/OrderItem/LazyOrderItem.vue";
 // 初始化數據和計算屬性
 const router = useRouter();
 const themeStore = useThemeStore();
@@ -270,7 +270,9 @@ const RenewalOrder = async (uuid: string) => {
 };
 // 處理續費訂單
 const handleRenewalOrder = async () => {
-  if (!isValidDuration.value) isShowDurationSpan.value = true;
+  if (!isValidDuration.value) {
+    isShowDurationSpan.value = true;
+  }
   renewOrder({ uuid: renewOrderId.value, duration: duration.value }).then(
     (res: any) => {
       console.log(res);

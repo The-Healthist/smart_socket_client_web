@@ -48,22 +48,22 @@
         >
           <!-- 插座信息 -->
           <div class="flex flex-col gap-[4px] justify-center items-center">
-            <i-icon icon="mdi:power-socket-uk" class="text-[36px]" />
+            <IIcon icon="mdi:power-socket-uk" class="text-[36px]" />
             <div>附近插座</div>
           </div>
           <!-- 购买产品 -->
           <div class="flex flex-col gap-[4px] justify-center items-center">
-            <i-icon icon="icon-park-outline:shopping" class="text-[36px]" />
+            <IIcon icon="icon-park-outline:shopping" class="text-[36px]" />
             <div>產品購買</div>
           </div>
           <!-- 加入我们 -->
           <div class="flex flex-col gap-[4px] justify-center items-center">
-            <i-icon icon="bi:people" class="text-[36px]" />
+            <IIcon icon="bi:people" class="text-[36px]" />
             <div>加入我們</div>
           </div>
           <!-- 使用指南 -->
           <div class="flex flex-col gap-[4px] justify-center items-center">
-            <i-icon icon="hugeicons:safari" class="text-[36px]" />
+            <IIcon icon="hugeicons:safari" class="text-[36px]" />
             <div>使用指南</div>
           </div>
         </div>
@@ -92,7 +92,7 @@
                 <div
                   class="h-[22px] flex flex-row justify-center items-center space-x-2 ml-2.5"
                 >
-                  <i-icon icon="mingcute:flash-line" class="text-[20px]" />
+                  <IIcon icon="mingcute:flash-line" class="text-[20px]" />
                   <span
                     class="text-larger text-inverted font-bold tracking-wide"
                     >掃碼租用</span

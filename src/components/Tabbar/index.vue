@@ -5,46 +5,46 @@
     <div
       class="bg-base/90 rounded-bar text-mutedC px-5 py-[5px] gap-3 flex justify-center items-center shadow"
     >
-      <router-link
+      <RouterLink
         to="/home"
         :class="[
           'hover:text-primary focus:text-primary w-[59px]  flex-col justify-center items-center gap-1 flex',
           isActive('/home') ? 'text-primary' : 'text-muted'
         ]"
       >
-        <i-icon icon="ion:home-outline" class="text-[24px]" />
+        <IIcon icon="ion:home-outline" class="text-[24px]" />
         <div>首頁</div>
-      </router-link>
-      <router-link
+      </RouterLink>
+      <RouterLink
         to="/order"
         :class="[
           'hover:text-primary focus:text-primary w-[59px]  flex-col justify-center items-center gap-1 flex',
           isActive('/order') ? 'text-primary' : 'text-muted'
         ]"
       >
-        <i-icon icon="cil:list" class="text-[24px]" />
+        <IIcon icon="cil:list" class="text-[24px]" />
         <div>訂單</div>
-      </router-link>
-      <router-link
+      </RouterLink>
+      <RouterLink
         to="/auth"
         :class="[
           'hover:text-primary focus:text-primary w-[59px]  flex-col justify-center items-center gap-1 flex',
           isActive('/auth') ? 'text-primary' : 'text-muted'
         ]"
       >
-        <i-icon icon="ion:person-outline" class="text-[24px]" />
+        <IIcon icon="ion:person-outline" class="text-[24px]" />
         <div>我的</div>
-      </router-link>
-      <router-link
+      </RouterLink>
+      <RouterLink
         to="/setting"
         :class="[
           'hover:text-primary focus:text-primary w-[59px]  flex-col justify-center items-center gap-1 flex',
           isActive('/setting') ? 'text-primary' : 'text-muted'
         ]"
       >
-        <i-icon icon="uil:setting" class="text-[24px]" />
+        <IIcon icon="uil:setting" class="text-[24px]" />
         <div>设置</div>
-      </router-link>
+      </RouterLink>
     </div>
   </div>
 </template>

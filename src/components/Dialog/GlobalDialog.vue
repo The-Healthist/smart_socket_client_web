@@ -1,6 +1,6 @@
 <!-- src/components/Dialog/GlobalDialog.vue -->
 <template>
-  <van-dialog
+  <VanDialog
     v-model:show="isShowLogin"
     :showConfirmButton="false"
     :showCancelButton="false"
@@ -78,7 +78,7 @@
               <div
                 class="h-[22px] flex flex-row justify-center items-center gap-2"
               >
-                <i-icon icon="mingcute:flash-line" class="text-[20px]" />
+                <IIcon icon="mingcute:flash-line" class="text-[20px]" />
                 <span class="text-larger text-inverted font-bold tracking-wide"
                   >重複登入</span
                 >
@@ -88,7 +88,7 @@
         </div>
       </div>
     </div>
-  </van-dialog>
+  </VanDialog>
 </template>
 
 <script setup lang="ts">
